@@ -10,4 +10,17 @@
       <ion-title size="large">productCategories</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-grid class="category-grid">
+
+    @for (category of categoryList;track category){
+      <ion-row class="category-row">
+        <ion-col  size="12" >
+          <p class="category-title">{{category}}</p>
+        </ion-col>
+      </ion-row>
+      <ion-row class="separation-row">
+
+      </ion-row>
+    }
+  </ion-grid>
 </ion-content>
