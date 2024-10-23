@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.product-grid{
+
+}
+.product-row{
+    height: 80px;
+    border-bottom: 1px solid #ccc;
+}
+.product-title{
+}
+.product-price{
+    font-weight: 500;
+    
+}
+:root {
+    ion-header {
+        --background: red;
+    }
+    ion-toolbar {
+        --background: red;
+    }
+    ion-title {
+        color: white;
+    }
+}

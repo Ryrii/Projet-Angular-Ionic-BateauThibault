@@ -10,4 +10,18 @@
       <ion-title size="large">{{category.name}}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-grid class="product-grid">
+
+    @for (product of products;track product.id){
+      <ion-row class="product-row" >
+        <ion-col  size="12" >
+          <p class="product-title">{{product.name}}</p>
+          <p class="product-price">{{product.price}} €</p>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row class="separation-row"> 
+      </ion-row> -->
+    }
+  </ion-grid>
 </ion-content>
