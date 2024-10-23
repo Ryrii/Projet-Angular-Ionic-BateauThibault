@@ -1,21 +1,22 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="no-shadow">
   <ion-toolbar>
-    <ion-title>Produits et Promotions</ion-title>
+    <ion-title style="margin-left: 10px;">Produits et Promotions</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header collapse="condense" class="no-shadow">
     <ion-toolbar>
-      <ion-title size="large">productCategories</ion-title>
+      <ion-title size="large">Produits et Promotions</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <ion-grid class="category-grid">
 
     @for (category of categoryList;track category){
-      <ion-row class="category-row">
+      <ion-row class="category-row" (click)="onCategory(category)">
         <ion-col  size="12" >
-          <p class="category-title">{{category}}</p>
+          <p class="category-title">{{category.name}}</p>
         </ion-col>
       </ion-row>
       <ion-row class="separation-row">
