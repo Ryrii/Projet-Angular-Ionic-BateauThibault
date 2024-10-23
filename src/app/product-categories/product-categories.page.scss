@@ -1,0 +1,22 @@
+*{
+    padding: 0;
+}
+.category-grid {
+    background-image: url('../../assets/meal-3175540_1280.jpg');
+    background-size: cover;
+    background-position: center;
+    
+    margin-top: 20px;
+}
+.category-row{
+    height: 100px;
+}
+.separation-row{
+    height: 3px;
+    background-color: white;
+}
+.category-title{
+    margin-left: 20%;
+    font-size: 24px;
+    color: white;
+}
