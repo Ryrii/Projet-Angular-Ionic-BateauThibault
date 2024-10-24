@@ -7,10 +7,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
   <div class="full-width-card">
     @for (category of categoryList; track category) {
-      <ion-card (click)="onCategory(category)">
+      <ion-card (click)="onCategory(category, $event)">
         <div class="card-image">
           <img [src]="category.image" [alt]="category.name">
           <div class="card-title">{{category.name}}</div>

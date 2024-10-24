@@ -33,5 +33,9 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'option-detail',
+    loadComponent: () => import('./option-detail/option-detail.page').then( m => m.OptionDetailPage)
+  },
   
 ];

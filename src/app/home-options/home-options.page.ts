@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard,IonButton, IonButtons, IonBackButton} from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { Router,NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home-options',
@@ -49,5 +49,14 @@ export class HomeOptionsPage implements OnInit {
       this.headerHidden = false;
     }
     this.lastScrollPosition = scrollPosition;
+  }
+  goToDetail(element: { title: string; image: string }) {
+    let navigationExtras: NavigationExtras = {
+      state: {
+        element: element,
+        category: this.category
+      }
+    };
+    this.router.navigate(['/option-detail'], navigationExtras);
   }
 }
