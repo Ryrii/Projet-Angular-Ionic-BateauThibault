@@ -17,7 +17,7 @@
   <ion-content class="header-content">
     <img src="{{categoryImage[category.id]}}" >
   </ion-content>
-  <h1>Poissons </h1>
+  <h1>{{category.name}} </h1>
   <ion-grid class="product-grid" >
 
     @for (product of products;track product.id){
