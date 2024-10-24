@@ -6,6 +6,7 @@
 .header-content {
   height: 200px;
   background-color: red;
+  scroll-behavior: unset;
 }
 
 h1 {
@@ -46,15 +47,6 @@ h1 {
   border-radius: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
- .product-img{
-  align-self: center;
-  height: 70px;
-  width: auto;
-  max-width: none;
- }
-.add-svg{
-  fill: black;
-}
 
 .product-title {
   font-size: 1.2em;
@@ -67,16 +59,3 @@ h1 {
 
 }
 
-:root {
-  ion-header {
-    --background: red;
-  }
-
-  ion-toolbar {
-    --background: red;
-  }
-
-  ion-title {
-    color: white;
-  }
-}
