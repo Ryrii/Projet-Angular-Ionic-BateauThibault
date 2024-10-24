@@ -17,6 +17,7 @@ export class ProductCategoriesPage implements OnInit {
     {id:0, name:'Poissons'},
     {id:1, name:'Fruits de Mer'},
     {id:2, name:'Crustacés'},
+    {id:3, name:'Promotions'},
   ]
 
   constructor(private router:Router) { }
