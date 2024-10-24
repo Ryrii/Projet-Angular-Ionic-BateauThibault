@@ -1,8 +1,8 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>{{category.name}}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -11,16 +11,32 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid class="product-grid">
+  <!-- <ion-content class="header-content">
+    <img src="" alt="">
+  </ion-content> -->
+  <ion-content class="header-content">
+    <img src="{{categoryImage[category.id]}}" >
+  </ion-content>
+  <h1>Poissons </h1>
+  <ion-grid class="product-grid" >
 
     @for (product of products;track product.id){
       <ion-row class="product-row" >
         <ion-col  size="12" >
-          <p class="product-title">{{product.name}}</p>
-          <p class="product-price">{{product.price}} €</p>
+          <div class="product-div">
+            <div class="product-div-left">
+              <p class="product-title">{{product.name}}</p>
+              <p class="product-price">{{product.price}}.00€</p>
+            </div>
+            <div class="product-div-right" style="background-image: url({{productImage[product.id]}}); background-size: cover; background-position: center; height: 70px;">
+              <div class="add-cart-btn">
+                <img class="add-svg" src="../../assets/add_16dp_5F6368_FILL0_wght400_GRAD0_opsz20 (copy).svg" alt="">
+              </div>
+            </div>
+          </div>
         </ion-col>
       </ion-row>
-      <!-- <ion-row class="separation-row"> 
+      <!-- <ion-row class="separation-row">
       </ion-row> -->
     }
   </ion-grid>
