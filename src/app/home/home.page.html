@@ -7,14 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="full-width-card">
-    @for (category of categoryList; track category) {
-      <ion-card (click)="onCategory(category, $event)">
-        <div class="card-image">
-          <img [src]="category.image" [alt]="category.name">
-          <div class="card-title">{{category.name}}</div>
+  <div class="category-container" *ngFor="let category of categories">
+    <div class="category-header">
+      <h2>{{ category.name }}</h2>
+      <ion-icon name="arrow-forward" (click)="goToHomeOptions(category)"></ion-icon>
+    </div>
+    <swiper-container #swiper init="false">
+      <swiper-slide *ngFor="let element of category.elements">
+        <div class="element-card" (click)="goToOptionDetail(category, element)">
+          <img [src]="element.image" [alt]="element.title">
+          <p>{{ element.title }}</p>
         </div>
-      </ion-card>
-    }
+      </swiper-slide>
+    </swiper-container>
   </div>
 </ion-content>
