@@ -1,0 +1,101 @@
+ion-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    background: transparent;
+  
+    ion-toolbar {
+      --background: rgba(255, 255, 255, 0.7);
+      --border-color: transparent;
+    }
+  }
+  
+  .header-hidden {
+    transform: translateY(-100%);
+  }
+.main-image {
+    position: relative;
+    height: 440px;
+    overflow: hidden;
+    margin-bottom: 80px;
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    .image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+  
+      h2 {
+        margin: 0;
+        font-size: 24px;
+      }
+  
+      p {
+        margin: 5px 0 0;
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .element-grid {
+    padding: 0 0px;
+  
+    ion-row {
+      margin: 0 0px;
+    }
+  
+    ion-col {
+      padding: 1px;
+    }
+  
+    .element-card {
+      position: relative;
+      border-radius: 0;
+      overflow: hidden;
+      margin-bottom:1px;
+  
+      img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+      }
+  
+      p {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 10px;
+        font-size: 14px;
+        text-align: center;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+  
+  ion-content {
+    --padding-top: 0;
+    --padding-bottom: calc(56px + var(--ion-safe-area-bottom, 0px));
+    
+    &::part(scroll) {
+      padding-top: 0;
+    }
+  }
+
+
+ 
+

@@ -1,27 +1,118 @@
-#container {
-  text-align: center;
+ion-header {
+  background: transparent;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  &.header-md::after {
+    display: none;
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-toolbar {
+  --background: transparent;
+  --border-color: transparent;
+  padding: 0;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+}
 
-  color: #8c8c8c;
-
+.main-title {
   margin: 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 32px;
+  color: #1e3a8a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-#container a {
-  text-decoration: none;
+ion-content {
+  --background: #ffffff;
+  --overflow: auto;
+}
+
+.scroll-content {
+  overflow-y: auto !important;
+}
+
+.full-width-card {
+  padding: 0;
+  --ion-padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: 60px; 
+}
+
+ion-card {
+  margin: 0 16px 16px;
+  width: calc(100% - 32px);
+  height: 180px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-image {
+  height: 100%;
+  position: relative;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.card-title {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.category-grid, .category-row, .separation-row {
+  display: none;
+}
+
+.ios {
+  --ion-safe-area-top: env(safe-area-inset-top);
+  --ion-safe-area-bottom: env(safe-area-inset-bottom);
+  --ion-safe-area-left: env(safe-area-inset-left);
+  --ion-safe-area-right: env(safe-area-inset-right);
+
+  ion-content {
+    --padding-top: var(--ion-safe-area-top);
+    --padding-bottom: var(--ion-safe-area-bottom);
+  }
+
+  .full-width-card {
+    padding-top: calc(60px + var(--ion-safe-area-top));
+  }
+
+  ion-toolbar {
+    padding-top: var(--ion-safe-area-top);
+  }
+
+  ion-title {
+    padding-top: var(--ion-safe-area-top);
+  }
+
+  .title-container {
+    padding-top: var(--ion-safe-area-top);
+  }
 }
