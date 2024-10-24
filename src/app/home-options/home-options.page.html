@@ -18,7 +18,7 @@
   <div class="element-grid">
     <ion-row>
       <ion-col size="6" *ngFor="let element of elements">
-        <div class="element-card">
+        <div class="element-card" (click)="goToDetail(element)">
           <img [src]="element.image" [alt]="element.title">
           <p>{{ element.title }}</p>
         </div>

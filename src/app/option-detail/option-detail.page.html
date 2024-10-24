@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home-options"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ element.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="main-image">
+    <img [src]="element.image" [alt]="element.title">
+  </div>
+  <div class="content-container">
+    <h1>{{ element.title }}</h1>
+    <p>{{ category.name }}</p>
+    <p class="description">Description for {{ element.title }}</p>
+    <div class="elements">
+      <h2>elements</h2>
+    </div>
+  </div>
+</ion-content>

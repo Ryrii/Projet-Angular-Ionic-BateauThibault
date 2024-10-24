@@ -20,13 +20,18 @@ export class HomePage {
 
   constructor(private router: Router) {}
 
-  onCategory(category: {id: number, name: string, image: string}) {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        category
-      }
-    };
-    const path = '/' + category.name.toLowerCase();
-    this.router.navigate(['home-options'], navigationExtras);
+  onCategory(category: {id: number, name: string, image: string}, event: Event) {
+    const card = event.currentTarget as HTMLElement;
+    card.classList.add('active');
+
+    setTimeout(() => {
+      card.classList.remove('active');
+      let navigationExtras: NavigationExtras = {
+        state: {
+          category
+        }
+      };
+      this.router.navigate(['home-options'], navigationExtras);
+    }, 300); 
   }
 }
