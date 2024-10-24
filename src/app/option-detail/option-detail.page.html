@@ -13,10 +13,30 @@
   </div>
   <div class="content-container">
     <h1>{{ element.title }}</h1>
-    <p>{{ category.name }}</p>
-    <p class="description">Description for {{ element.title }}</p>
+    <p class="category">{{ category.name }}</p>
+    <p class="description">{{ element.description }}</p>
     <div class="elements">
-      <h2>elements</h2>
+      <h2>Détails</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
     </div>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-buttons">
+      <ion-button (click)="onShare()">
+        <ion-icon name="share-outline"></ion-icon>
+        Partager
+      </ion-button>
+      <ion-button (click)="onLike()">
+        <ion-icon [name]="isLiked ? 'heart' : 'heart-outline'"></ion-icon>
+        J'aime
+      </ion-button>
+      <ion-button (click)="onFavorite()">
+        <ion-icon [name]="isFavorited ? 'star' : 'star-outline'"></ion-icon>
+        Favoris
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
