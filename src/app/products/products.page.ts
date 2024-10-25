@@ -20,6 +20,7 @@ export class ProductsPage implements OnInit {
     0: '../../assets/poissons.jpg',
     1: '../../assets/fruit.jpg',
     2: '../../assets/crustace.jpg',
+    3: '../../assets/images/promo.png',
   };
   productImage!: { [key: number]: string };
   products: Product[] = [];
