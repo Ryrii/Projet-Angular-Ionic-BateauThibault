@@ -8,7 +8,8 @@ import { Storage } from '@ionic/storage-angular';
 export class CartService {
   private cart = new BehaviorSubject<any>({});
   cart$ = this.cart.asObservable();
-
+  private cartItemCount = new BehaviorSubject<number>(0);
+  cartItemCount$ = this.cartItemCount.asObservable();
   constructor(private storage: Storage) {
     this.init();
   }
@@ -21,6 +22,7 @@ export class CartService {
   async loadCart() {
     const cart = await this.storage.get('cart') || {};
     this.cart.next(cart);
+    this.updateCartItemCount(cart);
   }
 
   async addToCart(product: any) {
@@ -33,6 +35,8 @@ export class CartService {
     await this.storage.set('cart', cart);
     this.cart.next(cart);
     console.log(cart)
+    this.updateCartItemCount(cart);
+
 
   }
   async getCart() {
@@ -41,6 +45,7 @@ export class CartService {
   async clearCart() {
     await this.storage.set('cart', {});
     this.cart.next({});
+    this.updateCartItemCount({});
   }
   async removeFromCart(product: any) {
     const cart = await this.storage.get('cart') || {};
@@ -52,6 +57,8 @@ export class CartService {
       }
       await this.storage.set('cart', cart);
       this.cart.next(cart);
+      this.updateCartItemCount(cart);
+
     }
   }
   async addQuantity(product: any) {
@@ -62,4 +69,14 @@ export class CartService {
       this.cart.next(cart);
     }
   }
+  async getProductsCount() {
+    const cart = await this.storage.get('cart') || {};
+    return Object.values(cart).length;
+  }
+  private updateCartItemCount(cart: { [key: string]: any }) {
+    const itemCount = Object.values(cart).reduce((acc, item: any) => acc + item.quantity, 0);
+    this.cartItemCount.next(itemCount);
+  }
 }
+
+

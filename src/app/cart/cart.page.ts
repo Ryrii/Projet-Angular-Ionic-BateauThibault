@@ -64,7 +64,7 @@ export class CartPage implements OnInit {
 
     this.productImage = this.productService.getProductImages();
 
-    await this.storage.create();
+    // await this.storage.create();
     const cart = await this.cartService.getCart();
     this.cartProducts = Object.values(cart);
   }
