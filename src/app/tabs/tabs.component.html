@@ -7,7 +7,10 @@
       <ion-icon src="../../assets/search_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"></ion-icon>
     </ion-tab-button>
     <ion-tab-button tab="cart">
-      <ion-icon src="../../assets/shopping_cart_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"></ion-icon>
+      <ion-icon color="dange" src="../../assets/shopping_cart_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"></ion-icon>
+      @if (cartItemCount) {
+        <ion-badge  color="danger">{{ cartItemCount }}</ion-badge>
+      }
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
