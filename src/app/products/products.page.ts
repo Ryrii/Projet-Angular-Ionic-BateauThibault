@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonIcon, IonImg } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonIcon, IonImg, IonAlert,IonBackButton,IonButtons } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService, Product } from '../services/products.service';
 import { TabsComponent } from '../tabs/tabs.component';
@@ -12,7 +12,7 @@ import { CartService } from '../services/cart.service';
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
   standalone: true,
-  imports: [IonCol, IonRow, IonGrid, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TabsComponent, IonIcon, IonImg]
+  imports: [IonCol, IonRow, IonGrid, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, TabsComponent, IonIcon, IonImg, IonAlert,IonBackButton,IonButtons],
 })
 export class ProductsPage implements OnInit {
   category!: { id: number, name: string };
@@ -23,6 +23,14 @@ export class ProductsPage implements OnInit {
   };
   productImage!: { [key: number]: string };
   products: Product[] = [];
+  isAlertOpen = false;
+  alertButtons = ['Ok'];
+  productAdded !: string
+  productAddedPrice !: string
+
+  setOpen(isOpen: boolean) {
+    this.isAlertOpen = isOpen;
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -57,6 +65,9 @@ export class ProductsPage implements OnInit {
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
+    this.setOpen(true);
+    this.productAdded = "Produit ajouté au panier : "+product.name
+    this.productAddedPrice= "Prix : "+product.price+" €";
   }
 
 }

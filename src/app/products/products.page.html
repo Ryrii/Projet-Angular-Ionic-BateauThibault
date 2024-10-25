@@ -1,13 +1,15 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>{{category.name}}</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header> -->
+</ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">category.name</ion-title>
+      <ion-title size="large">{{category.name}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -21,10 +23,12 @@
     @for (product of products;track product.id){
       <ion-row class="product-row" >
         <ion-col  size="12" >
-          <div class="product-div">
+          <div class="product-div" (click)="addToCart(product)">
             <div class="product-div-left">
               <p class="product-title">{{product.name}}</p>
-              <p class="product-price">{{product.price}},00€</p>
+              <p class="product-price">{{product.price.toString().includes('.') ?
+                product.price.toString().replace('.',',') + '0€' : product.price+
+                ',00€' }}</p>
             </div>
             <div class="product-div-right" style="background-image: url({{productImage[product.id]}}); background-size: cover; background-position: center; height: 70px;">
                 <ion-icon class="add-cart-btn" src="../../assets/add_16dp_5F6368_FILL0_wght400_GRAD0_opsz20 (copy).svg" (click)="addToCart(product)"></ion-icon>
@@ -35,3 +39,10 @@
     }
   </ion-grid>
 </ion-content>
+<ion-alert
+  [isOpen]="isAlertOpen"
+  [header]="productAdded"
+  [subHeader]="productAddedPrice"
+  [buttons]="alertButtons"
+  (didDismiss)="setOpen(false)"
+></ion-alert>

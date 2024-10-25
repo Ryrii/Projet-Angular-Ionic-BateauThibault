@@ -1,51 +1,111 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>cart</ion-title>
+    <h1 style="align-self: center; justify-self: center;">Pannier</h1>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cart</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-grid class="product-grid" >
-    @for (product of cartProducts;track product.id){
+@if(cartProducts && cartProducts.length>0) {
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">cart</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-grid class="product-grid">
+      @for (product of cartProducts;track product.id){
       <ion-row class="product-row" style="margin: 8px">
-        <ion-col  size="12" >
+        <ion-col size="12">
           <div class="product-div">
-            <div class="product-div-image" style="background-image: url({{productImage[product.id]}}); background-size: cover; background-position: center; height: 70px;">
-              <ion-icon class="add-cart-btn" src="../../assets/add_16dp_5F6368_FILL0_wght400_GRAD0_opsz20 (copy).svg" ></ion-icon>
-          </div>
+            <div class="product-div-image"
+              style="background-image: url({{productImage[product.id]}}); background-size: cover; background-position: center; height: 70px;">
+              <ion-icon class="add-cart-btn"
+                src="../../assets/add_16dp_5F6368_FILL0_wght400_GRAD0_opsz20 (copy).svg"></ion-icon>
+            </div>
             <div class="product-div-description">
               <p class="product-title">{{product.name}}</p>
               <div class="product-div-price">
-                <p class="product-price-unit">{{ product.price.toString().includes('.') ? product.price.toString().replace('.',',') + '0€' : product.price + ',00€' }}</p>
-                <p class="product-price-unit">{{ product.price*product.quantity.toString().includes('.') ? product.price*product.quantity.toString().replace('.',',') + '0€' : product.price*product.quantity + ',00€' }}</p>
+                <p class="product-price-unit">{{ product.price.toString().includes('.') ?
+                  product.price.toString().replace('.',',') + '0€ / pc' : product.price + ',00€ / pc' }}</p>
+                <h3 class="product-price-subtotal">{{ (product.price*product.quantity).toString().includes('.') ?
+                  product.price*product.quantity.toString().replace('.',',') + '0€' : product.price*product.quantity +
+                  ',00€' }}</h3>
               </div>
             </div>
             <div class="product-div-quantity">
               @if (product.quantity==1) {
-                <ion-icon class="" src="../../assets/delete_16dp_5F6368_FILL0_wght400_GRAD0_opsz20.svg" ></ion-icon>
+              <ion-icon (click)="removeProduct(product)" class="delete-icon"
+                src="../../assets/delete_16dp_5F6368_FILL0_wght400_GRAD0_opsz20.svg"></ion-icon>
               }
               @else {
-                <ion-icon (click)="removeProduct(product)" class="" src="../../assets/remove_16dp_5F6368_FILL0_wght400_GRAD0_opsz20 (copy).svg" ></ion-icon>
+              <ion-icon (click)="removeProduct(product)" class="remove-icon"
+                src="../../assets/remove_16dp_5F6368_FILL0_wght400_GRAD0_opsz20 (copy).svg"></ion-icon>
               }
               <p class="product-price">{{product.quantity}}</p>
-              <ion-icon (click)="addQuantity(product)" class="" src="../../assets/add_16dp_5F6368_FILL0_wght400_GRAD0_opsz20 (copy).svg" ></ion-icon>
+              <ion-icon (click)="addQuantity(product)" class="add-icon"
+                src="../../assets/add_16dp_5F6368_FILL0_wght400_GRAD0_opsz20 (copy).svg"></ion-icon>
             </div>
           </div>
         </ion-col>
       </ion-row>
-    }
-  </ion-grid>
-  <ion-button (click)="clearCart()">
-    clear cart
-  </ion-button>
-  <ion-button (click)="refreshCartProducts()">
-    update cart
-  </ion-button>
-</ion-content>
+      }
+    </ion-grid>
+    <div class="div-livraison" (click)="openSelect()">
+      <ion-icon class="store-icon" src="../../assets/storefront_16dp_5F6368_FILL0_wght400_GRAD0_opsz20.svg"></ion-icon>
+      <div class="right">
+        <div class="texte-livraison">
+          <p class="livraison-title">Point de Livraison</p>
+          <p class="livraison-description">{{selectedLivraisonPoint?selectedLivraisonPoint: 'Veuillez sélectionner un point de livraison'}}</p>
+        </div>
+        <ion-icon  class="arrow-icon" src="../../assets//arrow_forward_ios_16dp_5F6368_FILL0_wght400_GRAD0_opsz20.svg"></ion-icon>
+      </div>
+    </div>
+    <div class="total-div">
+      <h2>Total</h2>
+      <h2>{{getTotalPrice()}}</h2>
+    </div>
+    <ion-list style="display: none;">
+      <ion-item>
+        <ion-select #mySelect aria-label="Favorite Fruit" value="apple" (ionChange)="onSelectChange($event)">
+          <ion-select-option value="Bistrot des Gascons">Bistrot des Gascons</ion-select-option>
+          <ion-select-option value="Café des Phares">Café des Phares</ion-select-option>
+          <ion-select-option value="le Vert Tulipe">le Vert Tulipe</ion-select-option>
+          <ion-select-option value="Ruche qui dit Oui">Ruche qui dit Oui</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <div class="bottom-div">
+    </div>
+  </ion-content>
+  <div class="div-btn" >
+    <button class="validate-btn" (click)="validateOrder(true)"> Valider </button>
+  </div>
+}
+@else {
+  <ion-content [fullscreen]="true">
+    <h1>Pannier Vide</h1>
+  </ion-content>
+}
 
 
+<ion-alert
+  [isOpen]="openValidateOrderSuccess"
+  header="Commande Validée avec Succès"
+  [subHeader]="getTotalPrice()"
+  [message]="validationMessage"
+  [buttons]="alertButtons"
+  (didDismiss)="validateOrderSuccess(false)"
+></ion-alert>
+<ion-alert
+  [isOpen]="openAlertselect"
+  header="Veuillez sélectionner un point de livraison"
+  [buttons]="alertButtons"
+  (didDismiss)="validateOrder(false)"
+></ion-alert>
+<ion-alert
+  [isOpen]="openValidateOrder"
+  header="Souhaitez-vous valider votre commande ?"
+  [subHeader]="getTotalPrice()"
+  [buttons]="validateOrderButtons"
+  (didDismiss)="validateOrder(false)"
+></ion-alert>
