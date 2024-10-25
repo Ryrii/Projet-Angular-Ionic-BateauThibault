@@ -128,7 +128,7 @@ export class CartPage implements OnInit {
     const nextDeliveryDate = new Date(currentDate);
     nextDeliveryDate.setDate(currentDate.getDate() + daysUntilNextDelivery);
 
-    this.validationMessage = 'Vous pouvez récupérer votre commande au point de livraison : ' + this.selectedLivraisonPoint + ', le ' + nextDeliveryDate.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) ;
+    this.validationMessage = 'Vous pourrais récupérer votre commande au point de livraison : ' + this.selectedLivraisonPoint + ', le ' + nextDeliveryDate.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) ;
     this.openValidateOrderSuccess = isOpen;
     this.clearCart();
   }
