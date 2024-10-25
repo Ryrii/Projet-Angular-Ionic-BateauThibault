@@ -6,3 +6,12 @@
 :root {
   --ion-font-family: 'Inter', sans-serif;
 }
+// src/theme/variables.scss
+
+:root {
+  --ion-color-black: #000000; /* Ajout de la couleur noire */
+  --ion-color-black-rgb: 0, 0, 0;
+  --ion-color-black-contrast: #ffffff; /* Couleur contrastée */
+  --ion-color-black-shade: #1a1a1a;
+  --ion-color-black-tint: #333333;
+}
