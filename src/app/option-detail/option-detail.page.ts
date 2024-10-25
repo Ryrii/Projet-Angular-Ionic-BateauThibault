@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonFooter, IonBackButton, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonFooter, IonBackButton, IonButtons, IonButton, IonIcon, ActionSheetController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { shareOutline, heartOutline, heart, starOutline, star } from 'ionicons/icons';
+import { shareOutline, heartOutline, heart, starOutline, star, logoWhatsapp, logoFacebook, logoTwitter, close } from 'ionicons/icons';
 
+// 在构造函数中：
+addIcons({ shareOutline, heartOutline, heart, starOutline, star, logoWhatsapp, logoFacebook, logoTwitter, close });
 @Component({
   selector: 'app-option-detail',
   templateUrl: './option-detail.page.html',
@@ -19,7 +21,10 @@ export class OptionDetailPage implements OnInit {
   isLiked: boolean = false;
   isFavorited: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private actionSheetController: ActionSheetController
+  ) {
     addIcons({ shareOutline, heartOutline, heart, starOutline, star });
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras?.state as {
@@ -37,9 +42,42 @@ export class OptionDetailPage implements OnInit {
   ngOnInit() {
   }
 
-  onShare() {
-    // Implémenter la fonctionnalité de partage
-    console.log('Partager');
+  async onShare() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Partager',
+      buttons: [
+        {
+          text: 'partager sur WhatsApp',
+          icon: 'logo-whatsapp',
+          handler: () => {
+            console.log('partager sur WhatsApp');
+          }
+        },
+        {
+          text: 'partager sur Facebook',
+          icon: 'logo-facebook',
+          handler: () => {
+            console.log('partager sur Facebook');
+          }
+        },
+        {
+          text: 'partager sur Twitter',
+          icon: 'logo-twitter',
+          handler: () => {
+            console.log('partager sur Twitter');
+          }
+        },
+        {
+          text: 'annuler',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('annuler');
+          }
+        }
+      ]
+    });
+    await actionSheet.present();
   }
 
   onLike() {
